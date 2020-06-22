@@ -22,8 +22,6 @@ lnmp_install(){
     yum install screen -y
   fi
 
-  screen -S lnmp
-
   lnmp_status=`lnmp status`
   if [ $? -ne 0 ]
       then
