@@ -15,10 +15,19 @@ date_modify() {
 
 # 安装lnmp1.7
 lnmp_install(){
+  screen_status=`rpm -q screen`
+  if [ $? -eq 0 ];then
+    echo "screen 已经安装"
+  else
+    yum install screen -y
+  fi
+
+  screen -S lnmp
+
   lnmp_status=`lnmp status`
   if [ $? -ne 0 ]
       then
-      wget http://soft.vpser.net/lnmp/lnmp1.7.tar.gz -cO lnmp1.7.tar.gz && tar zxf lnmp1.7.tar.gz && cd lnmp1.7 && sh install.sh lnmp
+      wget http://soft.vpser.net/lnmp/lnmp1.7.tar.gz -cO lnmp1.7.tar.gz && tar zxf lnmp1.7.tar.gz && cd lnmp1.7 && ./install.sh lnmp
   fi
 }
 
