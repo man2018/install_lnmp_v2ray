@@ -145,7 +145,12 @@ if [ $? -eq 0 ];then
 fi
 
 echo "下载v2ray配置文件"
-wget https://raw.githubusercontent.com/man2018/install_lnmp_v2ray/master/v2ray.conf
+
+v2ray_conf_status=`[ -f v2ray.conf ]`
+if [ $? != 0 ];then
+  wget https://raw.githubusercontent.com/man2018/install_lnmp_v2ray/master/v2ray.conf
+fi
+
 echo "下载成功，正在写入配置v2ray配置文件"
 th=`sed 's/your-domain.com/'${web_name}'/g' v2ray.conf`
 cat > /etc/v2ray/config.json <<-EOF
