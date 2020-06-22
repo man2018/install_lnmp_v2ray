@@ -92,7 +92,7 @@ wordpress_install() {
       echo "chown已经安装"
     fi
 
-    chattr -i /home/wwwroot/www.$web_name
+    chattr -i /home/wwwroot/www.$web_name/.user.ini
     chown -R www:www /home/wwwroot/www.$web_name
     echo "请去浏览器输入www.$web_name安装网站"
   fi
