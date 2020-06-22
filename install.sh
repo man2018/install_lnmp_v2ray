@@ -44,7 +44,7 @@ ssl_install() {
 
   echo "检查socat命令是否安装"
   socat_status=`rpm -q socat`
-  if [ $? -q 0 ];then
+  if [ $? -eq 0 ];then
     echo "socat命令已经安装"
   else
     echo "socat命令开始安装"
