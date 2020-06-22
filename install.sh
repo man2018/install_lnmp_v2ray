@@ -93,6 +93,7 @@ if [ -f /usr/local/nginx/conf/vhost/www.$web_name.conf ];then
 fi
 
 echo "正在写入网站配置文件"
+wget https://raw.githubusercontent.com/man2018/install_lnmp_v2ray/master/web.conf
 th=`sed 's/mrwen.me/'${web_name}'/g' web.conf`
 cat > /usr/local/nginx/conf/vhost/www.$web_name.conf <<-EOF
 $th
@@ -123,6 +124,7 @@ if [ $? -eq 0 ];then
 fi
 
 echo "正在写入v2ray配置文件"
+wget https://raw.githubusercontent.com/man2018/install_lnmp_v2ray/master/v2ray.conf
 th=`sed 's/mrwen.me/'${web_name}'/g' v2ray.conf`
 cat > /etc/v2ray/config.json <<-EOF
 $th
