@@ -77,8 +77,23 @@ wordpress_install() {
     echo -en "\e[1;32m输入网站域名[注只能输入主域名，如aaa.com，否则报错]： \e[0m"
     read web_name
     tar -zxvf wordpress-5.4.2-zh_CN.tar.gz && mv wordpress/* /home/wwwroot/www.$web_name && rm -rf wordpress
+    
+    chatter_status=`rpm -q chown`
+    if [ $? != 0 ];then
+      yum install chattr -y 
+    else
+      echo "chown已经安装"
+    fi
+    
+    chown_status=`rpm -q chown`
+    if [ $? != 0 ];then
+      yum install chown -y 
+    else
+      echo "chown已经安装"
+    fi
+    
     chatter -i /home/wwwroot/www.$web_name
-    chown -R www:www /home/wwwroot/$web_name
+    chown -R www:www /home/wwwroot/www.$web_name
     echo "请去浏览器输入www.mrwen.me安装网站"
   fi
 }
