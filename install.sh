@@ -78,7 +78,7 @@ wordpress_install() {
     read web_name
     tar -zxvf wordpress-5.4.2-zh_CN.tar.gz && mv wordpress/* /home/wwwroot/www.$web_name && rm -rf wordpress
     
-    chatter_status=`rpm -q chown`
+    chattr_status=`rpm -q chown`
     if [ $? != 0 ];then
       yum install chattr -y 
     else
@@ -108,7 +108,12 @@ if [ -f /usr/local/nginx/conf/vhost/www.$web_name.conf ];then
 fi
 
 echo "正在下载$web_name网站配置文件"
-wget https://raw.githubusercontent.com/man2018/install_lnmp_v2ray/master/web.conf
+
+web_conf_status=`[ -f web.conf ]`
+if [ $? != 0 ];then
+  wget https://raw.githubusercontent.com/man2018/install_lnmp_v2ray/master/web.conf
+fi
+
 echo "下载成功，正在写入配置$web_name配置文件"
 th=`sed 's/your-domain/'${web_name}'/g' web.conf`
 cat > /usr/local/nginx/conf/vhost/www.$web_name.conf <<-EOF
