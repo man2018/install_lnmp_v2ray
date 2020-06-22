@@ -48,7 +48,7 @@ ssl_install() {
     echo "socat命令已经安装"
   else
     echo "socat命令开始安装"
-    yum install -socat -y
+    yum install socat -y
   fi
 
   echo "开始申请证书"
