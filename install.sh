@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #安装lnmp wordpress v2ray
 #v1.0 2020-06-21
 
