@@ -68,7 +68,7 @@ wordpress_install() {
     echo -en "\e[1;32m输入网站域名[注只能输入主域名，如aaa.com，否则报错]： \e[0m"
     read web_name
     tar -zxvf wordpress-5.4.2-zh_CN.tar.gz && mv wordpress/* /home/wwwroot/www.$web_name && rm -rf wordpress
-    chattr -i /home/wwwroot/www.$web_name
+    chatter -i /home/wwwroot/www.$web_name
     chown -R www:www /home/wwwroot/$web_name
     echo "请去浏览器输入www.mrwen.me安装网站"
   else
@@ -77,21 +77,21 @@ wordpress_install() {
     echo -en "\e[1;32m输入网站域名[注只能输入主域名，如aaa.com，否则报错]： \e[0m"
     read web_name
     tar -zxvf wordpress-5.4.2-zh_CN.tar.gz && mv wordpress/* /home/wwwroot/www.$web_name && rm -rf wordpress
-    
+
     chattr_status=`rpm -q chown`
     if [ $? != 0 ];then
       yum install chattr -y 
     else
       echo "chown已经安装"
     fi
-    
+
     chown_status=`rpm -q chown`
     if [ $? != 0 ];then
       yum install chown -y 
     else
       echo "chown已经安装"
     fi
-    
+
     chattr -i /home/wwwroot/www.$web_name
     chown -R www:www /home/wwwroot/www.$web_name
     echo "请去浏览器输入www.$web_name安装网站"
@@ -144,13 +144,13 @@ if [ $? -eq 0 ];then
   mv /etc/v2ray/config.json /etc/v2ray/config.json.bak-`date "+%F-%H:%M:%S"`
 fi
 
-echo "下载v2ray配置文件"
 
 v2ray_conf_status=`[ -f v2ray.conf ]`
 if [ $? != 0 ];then
   wget https://raw.githubusercontent.com/man2018/install_lnmp_v2ray/master/v2ray.conf
 fi
 
+echo "下载v2ray配置文件"
 echo "下载成功，正在写入配置v2ray配置文件"
 th=`sed 's/your-domain.com/'${web_name}'/g' v2ray.conf`
 cat > /etc/v2ray/config.json <<-EOF
