@@ -124,7 +124,7 @@ fi
 
 echo "正在写入v2ray配置文件"
 th=`sed 's/mrwen.me/'${web_name}'/g' v2ray.conf`
-cat > /etc/v2ray/conf.json <<-EOF
+cat > /etc/v2ray/config.json <<-EOF
 $th
 EOF
 echo "v2ray配置文件写入成功，重启服务"
