@@ -27,6 +27,7 @@ lnmp_install(){
       then
       wget http://soft.vpser.net/lnmp/lnmp1.7.tar.gz -cO lnmp1.7.tar.gz && tar zxf lnmp1.7.tar.gz && cd lnmp1.7 && ./install.sh lnmp
   fi
+    echo "lnmp已经安装"
 }
 
 # 申请SSL泛证书
